@@ -16,7 +16,10 @@
 		184A1CA21A6DBB13007444BC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A1CA01A6DBB13007444BC /* LaunchScreen.xib */; };
 		184A1CAE1A6DBB13007444BC /* MeetMeUpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A1CAD1A6DBB13007444BC /* MeetMeUpTests.m */; };
 		184A1CB91A6DC40B007444BC /* Meetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A1CB81A6DC40B007444BC /* Meetup.m */; };
+		189523F71A6EBF51004144C5 /* CommentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189523F61A6EBF51004144C5 /* CommentDetailViewController.m */; };
 		18C5AA081A6DFC480029B2C2 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5AA071A6DFC480029B2C2 /* WebViewController.m */; };
+		18C5AA0B1A6E31C60029B2C2 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5AA0A1A6E31C60029B2C2 /* CommentsViewController.m */; };
+		18C5AA0E1A6E36BC0029B2C2 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5AA0D1A6E36BC0029B2C2 /* Comment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +50,14 @@
 		184A1CAD1A6DBB13007444BC /* MeetMeUpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeetMeUpTests.m; sourceTree = "<group>"; };
 		184A1CB71A6DC40A007444BC /* Meetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meetup.h; sourceTree = "<group>"; };
 		184A1CB81A6DC40B007444BC /* Meetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meetup.m; sourceTree = "<group>"; };
+		189523F51A6EBF51004144C5 /* CommentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentDetailViewController.h; sourceTree = "<group>"; };
+		189523F61A6EBF51004144C5 /* CommentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentDetailViewController.m; sourceTree = "<group>"; };
 		18C5AA061A6DFC480029B2C2 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		18C5AA071A6DFC480029B2C2 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		18C5AA091A6E31C60029B2C2 /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
+		18C5AA0A1A6E31C60029B2C2 /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
+		18C5AA0C1A6E36BC0029B2C2 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		18C5AA0D1A6E36BC0029B2C2 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +103,16 @@
 				184A1C961A6DBB13007444BC /* AppDelegate.m */,
 				184A1CB71A6DC40A007444BC /* Meetup.h */,
 				184A1CB81A6DC40B007444BC /* Meetup.m */,
+				18C5AA0C1A6E36BC0029B2C2 /* Comment.h */,
+				18C5AA0D1A6E36BC0029B2C2 /* Comment.m */,
 				184A1C981A6DBB13007444BC /* ViewController.h */,
 				184A1C991A6DBB13007444BC /* ViewController.m */,
 				1813565F1A6DDFDF0064DAB2 /* EventDetailViewController.h */,
 				181356601A6DDFDF0064DAB2 /* EventDetailViewController.m */,
+				18C5AA091A6E31C60029B2C2 /* CommentsViewController.h */,
+				18C5AA0A1A6E31C60029B2C2 /* CommentsViewController.m */,
+				189523F51A6EBF51004144C5 /* CommentDetailViewController.h */,
+				189523F61A6EBF51004144C5 /* CommentDetailViewController.m */,
 				18C5AA061A6DFC480029B2C2 /* WebViewController.h */,
 				18C5AA071A6DFC480029B2C2 /* WebViewController.m */,
 				184A1C9B1A6DBB13007444BC /* Main.storyboard */,
@@ -238,8 +253,11 @@
 				18C5AA081A6DFC480029B2C2 /* WebViewController.m in Sources */,
 				181356611A6DDFDF0064DAB2 /* EventDetailViewController.m in Sources */,
 				184A1C971A6DBB13007444BC /* AppDelegate.m in Sources */,
+				189523F71A6EBF51004144C5 /* CommentDetailViewController.m in Sources */,
 				184A1C941A6DBB13007444BC /* main.m in Sources */,
+				18C5AA0B1A6E31C60029B2C2 /* CommentsViewController.m in Sources */,
 				184A1CB91A6DC40B007444BC /* Meetup.m in Sources */,
+				18C5AA0E1A6E36BC0029B2C2 /* Comment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,7 +33,7 @@
     self.tableView.delegate = self;
     self.searchTextField.delegate = self;
 
-    // [self addMagnifyingGlass];
+    //[self addMagnifyingGlass];
 
     // Create a navbar activity indicator, insert it into a UIBarButtonItem and set it right of the nav item
     self.navbarActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -44,7 +44,7 @@
     [self.navbarActivityIndicator startAnimating];
 
     NSString *jsonURLString = @"https://api.meetup.com/2/open_events.json?zip=94104&text=mobile&time=,1w&key=2e1c3c2a7c6f1b196936174260122143";
-    [self getJSONDataWithURLString:jsonURLString];
+    [self getMeetUpsFromJSONURLString:jsonURLString];
 }
 
 - (void)addMagnifyingGlass {
@@ -58,7 +58,7 @@
 
 
 // Helper method for getting JSON Data and storing it in meetUpsArray
-- (void)getJSONDataWithURLString:(NSString *)url
+- (void)getMeetUpsFromJSONURLString:(NSString *)url
 {
     [self.meetUpsArray removeAllObjects];
     // create a url with the json file
@@ -82,7 +82,7 @@
             meetUp.visibility = resultsMeetupDictionary[@"visibility"];
             meetUp.maybe_rsvp_count = resultsMeetupDictionary[@"maybe_rsvp_count"];
             meetUp.venue = resultsMeetupDictionary[@"venue"];
-            meetUp.meetupId = resultsMeetupDictionary[@"id"];
+            meetUp.event_id = resultsMeetupDictionary[@"id"];
             meetUp.utc_offset = resultsMeetupDictionary[@"utc_offset"];
             meetUp.distance = resultsMeetupDictionary[@"distance"];
             meetUp.duration = resultsMeetupDictionary[@"duration"];
@@ -113,7 +113,7 @@
     NSString *jsonURLString = [NSString stringWithFormat:@"https://api.meetup.com/2/open_events.json?zip=94104&text=%@&time=,1w&key=2e1c3c2a7c6f1b196936174260122143", textField.text];
 
     // Get JSON data and hide the keyboard
-    [self getJSONDataWithURLString:jsonURLString];
+    [self getMeetUpsFromJSONURLString:jsonURLString];
     [self.searchTextField resignFirstResponder];
 
     return true;

@@ -138,18 +138,32 @@
                                 <color key="color" red="1" green="0.0" blue="0.52156865600000002" alpha="1" colorSpace="deviceRGB"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pY3-j9-Css">
-                                <rect key="frame" x="15" y="516" width="290" height="40"/>
+                                <rect key="frame" x="15" y="516" width="164" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.52156865600000002" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="4Ut-e0-KKQ"/>
-                                    <constraint firstAttribute="width" constant="290" id="gj0-Z4-uYA"/>
+                                    <constraint firstAttribute="width" constant="164" id="gj0-Z4-uYA"/>
                                 </constraints>
                                 <state key="normal" title="View in Webpage">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fTi-dQ-Jfp" kind="modal" id="rzS-Wx-ERB"/>
+                                    <segue destination="fTi-dQ-Jfp" kind="modal" identifier="WebViewSegue" id="rzS-Wx-ERB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WO3-e6-SdA">
+                                <rect key="frame" x="187" y="516" width="117" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.52156865600000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="UUa-rU-REP"/>
+                                    <constraint firstAttribute="width" constant="117" id="ltl-b8-zkj"/>
+                                </constraints>
+                                <state key="normal" title="Comments">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="paM-RS-zso" kind="push" identifier="CommentSegue" id="sIc-of-568"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -157,7 +171,9 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="3HZ-GF-pan" secondAttribute="centerX" constant="-1" id="FhP-cv-dX3"/>
                             <constraint firstItem="Yr3-lA-R8J" firstAttribute="top" secondItem="pY3-j9-Css" secondAttribute="bottom" constant="12" id="HFz-b1-xMK"/>
-                            <constraint firstAttribute="centerX" secondItem="pY3-j9-Css" secondAttribute="centerX" id="NL8-oI-1KY"/>
+                            <constraint firstAttribute="centerX" secondItem="pY3-j9-Css" secondAttribute="centerX" constant="63" id="NL8-oI-1KY"/>
+                            <constraint firstItem="Yr3-lA-R8J" firstAttribute="top" secondItem="WO3-e6-SdA" secondAttribute="bottom" constant="12" id="TKN-vf-3ri"/>
+                            <constraint firstItem="WO3-e6-SdA" firstAttribute="trailing" secondItem="nXp-uj-d4Y" secondAttribute="trailingMargin" id="fiy-0L-cqg"/>
                             <constraint firstItem="pY3-j9-Css" firstAttribute="top" secondItem="3HZ-GF-pan" secondAttribute="bottom" constant="8" id="hiA-Us-IR2"/>
                             <constraint firstAttribute="centerY" secondItem="Vsg-MZ-W9H" secondAttribute="centerY" id="jAf-En-L2K"/>
                             <constraint firstAttribute="centerX" secondItem="Vsg-MZ-W9H" secondAttribute="centerX" id="mRq-Jw-L1F"/>
@@ -175,6 +191,115 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IdS-8O-WDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="967" y="202"/>
+        </scene>
+        <!--Comments-->
+        <scene sceneID="GkZ-R7-8qU">
+            <objects>
+                <viewController id="paM-RS-zso" customClass="CommentsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fhS-us-ffn"/>
+                        <viewControllerLayoutGuide type="bottom" id="20P-SE-f1f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sBZ-M8-hg5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="GJN-jV-uUT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CommentCell" textLabel="E85-Cg-Tpc" detailTextLabel="fjU-AN-fyS" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="iuc-la-fic">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iuc-la-fic" id="Lj7-Xb-W87">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E85-Cg-Tpc">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fjU-AN-fyS">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="VPR-Ba-imr" kind="push" id="1JH-BK-7Yx"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="paM-RS-zso" id="7R9-zu-Xxp"/>
+                                    <outlet property="delegate" destination="paM-RS-zso" id="xAL-fr-iTh"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="20P-SE-f1f" firstAttribute="top" secondItem="GJN-jV-uUT" secondAttribute="bottom" id="7ih-xs-6rz"/>
+                            <constraint firstItem="GJN-jV-uUT" firstAttribute="top" secondItem="sBZ-M8-hg5" secondAttribute="top" id="Bp8-Jk-ZRE"/>
+                            <constraint firstAttribute="trailing" secondItem="GJN-jV-uUT" secondAttribute="trailing" id="CVW-Qb-gDu"/>
+                            <constraint firstItem="GJN-jV-uUT" firstAttribute="leading" secondItem="sBZ-M8-hg5" secondAttribute="leading" id="eGD-Ck-LHR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Comments" id="Eod-oZ-lfb"/>
+                    <connections>
+                        <outlet property="navItem" destination="Eod-oZ-lfb" id="LwW-0a-W35"/>
+                        <outlet property="tableView" destination="GJN-jV-uUT" id="YMA-iJ-qNO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DbM-rE-8cR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1390" y="202"/>
+        </scene>
+        <!--Comment Detail View Controller-->
+        <scene sceneID="VeJ-vg-dGa">
+            <objects>
+                <viewController id="VPR-Ba-imr" customClass="CommentDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3mp-oX-FvJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vf6-kN-aQZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Asv-Ws-BhG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Person Who made the Comment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7L-nF-SnU">
+                                <rect key="frame" x="16" y="81" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.16862745579999999" green="0.0" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time the comment was made" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzy-yy-et2">
+                                <rect key="frame" x="16" y="110" width="227" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UId-6o-JQH">
+                                <rect key="frame" x="16" y="146" width="288" height="269"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ena-e0-UbW"/>
+                    <connections>
+                        <outlet property="commentTextView" destination="UId-6o-JQH" id="ouI-rd-5AH"/>
+                        <outlet property="dateLabel" destination="Yzy-yy-et2" id="BSc-Oe-ken"/>
+                        <outlet property="memberLabel" destination="d7L-nF-SnU" id="1m7-Ke-BGQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2V9-42-JNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1804" y="202"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="GRj-XD-Hf2">
