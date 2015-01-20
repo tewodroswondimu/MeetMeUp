@@ -7,12 +7,14 @@
 //
 
 #import "EventDetailViewController.h"
+#import "WebViewController.h"
 
 @interface EventDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *eventName;
 @property (weak, nonatomic) IBOutlet UILabel *rsvp_count;
 @property (weak, nonatomic) IBOutlet UITextView *eventDescription;
 @property (weak, nonatomic) IBOutlet UILabel *eventGroup;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 @end
 
@@ -26,12 +28,27 @@
     self.rsvp_count.text = [NSString stringWithFormat:@"%@ %@", self.meetup.yes_rsvp_count, self.meetup.group[@"who"]];
     self.eventGroup.text = [NSString stringWithFormat:@"%@", self.meetup.group[@"name"]];
 
-    // Displays the html with a formated style
-    NSString *htmlString = [NSString stringWithFormat:@"%@", self.meetup.event_description];
-    NSAttributedString *formatedHtml = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil];
-    self.eventDescription.attributedText = formatedHtml;
-    
+    // Display the spinner until the html is formated
+    [self.spinner startAnimating];
 
+    // Displays the html with a formated style
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *htmlString = [NSString stringWithFormat:@"%@", self.meetup.event_description];
+        
+        NSAttributedString *formatedHtml = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil];
+        self.eventDescription.attributedText = formatedHtml;
+
+        // Stop animating as soon as the html has been converted into annotated text
+        [self.spinner stopAnimating];
+        self.spinner.hidden = YES; 
+    });
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    WebViewController *webVC = segue.destinationViewController;
+    webVC.url = self.meetup.event_url;
+    webVC.title = self.meetup.name;
 }
 
 @end

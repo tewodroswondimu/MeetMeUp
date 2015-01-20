@@ -10,11 +10,12 @@
 #import "EventDetailViewController.h"
 #import "Meetup.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate> 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSDictionary *resultsDictionary;
 @property NSArray *resultsMeetUpArray;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 
 @property NSMutableArray *meetUpsArray;
 
@@ -30,17 +31,37 @@
 
     self.meetUpsArray = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
+    self.searchTextField.delegate = self;
+
+    // [self addMagnifyingGlass];
 
     // Create a navbar activity indicator, insert it into a UIBarButtonItem and set it right of the nav item
-    self.navbarActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.navbarActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     UIBarButtonItem *navSpinnerBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.navbarActivityIndicator];
     [self.navItem setRightBarButtonItem:navSpinnerBarButtonItem];
 
     // Start animating the spinner on view load
     [self.navbarActivityIndicator startAnimating];
-    
+
+    NSString *jsonURLString = @"https://api.meetup.com/2/open_events.json?zip=94104&text=mobile&time=,1w&key=2e1c3c2a7c6f1b196936174260122143";
+    [self getJSONDataWithURLString:jsonURLString];
+}
+
+- (void)addMagnifyingGlass {
+    UILabel *magnifyingGlass = [[UILabel alloc] init];
+    [magnifyingGlass setText:[[NSString alloc] initWithUTF8String:"\xF0\x9F\x94\x8D"]];
+    [magnifyingGlass sizeToFit];
+
+    [self.searchTextField setRightView:magnifyingGlass];
+    [self.searchTextField setRightViewMode:UITextFieldViewModeAlways];
+}
+
+
+// Helper method for getting JSON Data and storing it in meetUpsArray
+- (void)getJSONDataWithURLString:(NSString *)url
+{
+    [self.meetUpsArray removeAllObjects];
     // create a url with the json file
-    NSString *url = @"https://api.meetup.com/2/open_events.json?zip=60604&text=mobile&time=,1w&key=2e1c3c2a7c6f1b196936174260122143";
     NSURL *jsonUrl = [NSURL URLWithString:url];
 
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:jsonUrl];
@@ -55,24 +76,24 @@
         for (NSDictionary *resultsMeetupDictionary in self.resultsMeetUpArray) {
             // Create a temporary meetup object to store the
             Meetup *meetUp = [[Meetup alloc] init];
-                meetUp.name = resultsMeetupDictionary[@"name"];
-                meetUp.headcount = resultsMeetupDictionary[@"headcount"];
-                meetUp.status = resultsMeetupDictionary[@"status"];
-                meetUp.visibility = resultsMeetupDictionary[@"visibility"];
-                meetUp.maybe_rsvp_count = resultsMeetupDictionary[@"maybe_rsvp_count"];
-                meetUp.venue = resultsMeetupDictionary[@"venue"];
-                meetUp.meetupId = resultsMeetupDictionary[@"id"];
-                meetUp.utc_offset = resultsMeetupDictionary[@"utc_offset"];
-                meetUp.distance = resultsMeetupDictionary[@"distance"];
-                meetUp.duration = resultsMeetupDictionary[@"duration"];
-                meetUp.time = resultsMeetupDictionary[@"time"];
-                meetUp.waitlist_count = resultsMeetupDictionary[@"waitlist_count"];
-                meetUp.updated = resultsMeetupDictionary[@"updated"];
-                meetUp.yes_rsvp_count = resultsMeetupDictionary[@"yes_rsvp_count"];
-                meetUp.created = resultsMeetupDictionary[@"created"];
-                meetUp.event_url = resultsMeetupDictionary[@"event_url"];
-                meetUp.event_description = resultsMeetupDictionary[@"description"];
-                meetUp.group = resultsMeetupDictionary[@"group"];
+            meetUp.name = resultsMeetupDictionary[@"name"];
+            meetUp.headcount = resultsMeetupDictionary[@"headcount"];
+            meetUp.status = resultsMeetupDictionary[@"status"];
+            meetUp.visibility = resultsMeetupDictionary[@"visibility"];
+            meetUp.maybe_rsvp_count = resultsMeetupDictionary[@"maybe_rsvp_count"];
+            meetUp.venue = resultsMeetupDictionary[@"venue"];
+            meetUp.meetupId = resultsMeetupDictionary[@"id"];
+            meetUp.utc_offset = resultsMeetupDictionary[@"utc_offset"];
+            meetUp.distance = resultsMeetupDictionary[@"distance"];
+            meetUp.duration = resultsMeetupDictionary[@"duration"];
+            meetUp.time = resultsMeetupDictionary[@"time"];
+            meetUp.waitlist_count = resultsMeetupDictionary[@"waitlist_count"];
+            meetUp.updated = resultsMeetupDictionary[@"updated"];
+            meetUp.yes_rsvp_count = resultsMeetupDictionary[@"yes_rsvp_count"];
+            meetUp.created = resultsMeetupDictionary[@"created"];
+            meetUp.event_url = resultsMeetupDictionary[@"event_url"];
+            meetUp.event_description = resultsMeetupDictionary[@"description"];
+            meetUp.group = resultsMeetupDictionary[@"group"];
 
             // Add your meetup object inside a mutable array
             [self.meetUpsArray addObject:meetUp];
@@ -81,6 +102,24 @@
         [self.navbarActivityIndicator stopAnimating];
     }];
 }
+
+#pragma mark TEXTFIELDS
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    // Start animating the spinner when a new search is made
+    [self.navbarActivityIndicator startAnimating];
+
+    NSString *jsonURLString = [NSString stringWithFormat:@"https://api.meetup.com/2/open_events.json?zip=94104&text=%@&time=,1w&key=2e1c3c2a7c6f1b196936174260122143", textField.text];
+
+    // Get JSON data and hide the keyboard
+    [self getJSONDataWithURLString:jsonURLString];
+    [self.searchTextField resignFirstResponder];
+
+    return true;
+}
+
+#pragma mark TABLEVIEW METHODS
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -99,6 +138,8 @@
 {
     return self.meetUpsArray.count;
 }
+
+#pragma mark SEGUE
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
 {
