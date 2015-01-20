@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "EventDetailViewController.h"
 #import "Meetup.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate> 
@@ -77,7 +78,7 @@
             [self.meetUpsArray addObject:meetUp];
             [self.tableView reloadData];
         }
-
+        [self.navbarActivityIndicator stopAnimating];
     }];
 }
 
@@ -97,6 +98,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.meetUpsArray.count;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
+{
+    EventDetailViewController *eventDVC = segue.destinationViewController;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    Meetup *meetUpToSend = [self.meetUpsArray objectAtIndex:indexPath.row];
+    eventDVC.meetup = meetUpToSend; 
 }
 
 @end

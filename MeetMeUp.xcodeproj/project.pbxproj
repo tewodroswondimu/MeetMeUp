@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181356611A6DDFDF0064DAB2 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181356601A6DDFDF0064DAB2 /* EventDetailViewController.m */; };
 		184A1C941A6DBB13007444BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A1C931A6DBB13007444BC /* main.m */; };
 		184A1C971A6DBB13007444BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A1C961A6DBB13007444BC /* AppDelegate.m */; };
 		184A1C9A1A6DBB13007444BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A1C991A6DBB13007444BC /* ViewController.m */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1813565F1A6DDFDF0064DAB2 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
+		181356601A6DDFDF0064DAB2 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
 		184A1C8E1A6DBB13007444BC /* MeetMeUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetMeUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		184A1C921A6DBB13007444BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		184A1C931A6DBB13007444BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -90,6 +93,8 @@
 				184A1CB81A6DC40B007444BC /* Meetup.m */,
 				184A1C981A6DBB13007444BC /* ViewController.h */,
 				184A1C991A6DBB13007444BC /* ViewController.m */,
+				1813565F1A6DDFDF0064DAB2 /* EventDetailViewController.h */,
+				181356601A6DDFDF0064DAB2 /* EventDetailViewController.m */,
 				184A1C9B1A6DBB13007444BC /* Main.storyboard */,
 				184A1C9E1A6DBB13007444BC /* Images.xcassets */,
 				184A1CA01A6DBB13007444BC /* LaunchScreen.xib */,
@@ -225,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				184A1C9A1A6DBB13007444BC /* ViewController.m in Sources */,
+				181356611A6DDFDF0064DAB2 /* EventDetailViewController.m in Sources */,
 				184A1C971A6DBB13007444BC /* AppDelegate.m in Sources */,
 				184A1C941A6DBB13007444BC /* main.m in Sources */,
 				184A1CB91A6DC40B007444BC /* Meetup.m in Sources */,
@@ -418,6 +424,7 @@
 				184A1CB31A6DBB13007444BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		184A1CB41A6DBB13007444BC /* Build configuration list for PBXNativeTarget "MeetMeUpTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +433,7 @@
 				184A1CB61A6DBB13007444BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
